@@ -1,4 +1,8 @@
 
+using Expense_Tracker.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+
 namespace Expense_Tracker
 {
     public class Program
@@ -13,6 +17,9 @@ namespace Expense_Tracker
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
